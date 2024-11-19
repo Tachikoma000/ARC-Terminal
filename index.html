@@ -215,6 +215,25 @@
             width: 100%;
         }
 
+        .notification {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            background: var(--section-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            font-family: 'Space Mono', monospace;
+            transform: translateX(120%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
         @media (max-width: 768px) {
             .navbar {
                 padding: 1rem;
@@ -284,6 +303,8 @@
         <p>© 2024 AI Rig Complex. All rights reserved.</p>
     </footer>
 
+    <div class="notification"></div>
+
     <script>
         function createParticle() {
             const particle = document.createElement('div');
@@ -335,6 +356,54 @@
                 createParticle();
             }
         }, 1000);
+    </script>
+    <script>
+        function showNotification(message) {
+            const notification = document.querySelector('.notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSc_aOcz6EEC7Sn6E2W2lvq2TD17nF9tImczFBWXeEHfsGuQdQ/formResponse';
+        const ENTRY_ID = '1808091578';
+
+        document.querySelector('.signup-button').addEventListener('click', async (e) => {
+            e.preventDefault();
+            const emailInput = document.querySelector('.signup-input');
+            const submitButton = document.querySelector('.signup-button');
+            
+            if (!emailInput.value) {
+                showNotification('Please enter an email address');
+                return;
+            }
+
+            try {
+                submitButton.disabled = true;
+                emailInput.disabled = true;
+                
+                const formData = new FormData();
+                formData.append(`entry.${ENTRY_ID}`, emailInput.value);
+                
+                await fetch(FORM_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: formData
+                });
+                
+                emailInput.value = '';
+                showNotification('Thanks for signing up!');
+            } catch (error) {
+                console.error('Error:', error);
+                showNotification('Signup failed. Please try again.');
+            } finally {
+                submitButton.disabled = false;
+                emailInput.disabled = false;
+            }
+        });
     </script>
 </body>
 </html>
