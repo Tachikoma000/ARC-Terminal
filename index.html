@@ -3,538 +3,260 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARC - The AI Rig Complex</title>
+    <title>ARC - AI Rig Complex</title>
     <style>
-        :root {
-            --bg-color: #0a0a0f;
-            --text-color: rgba(140, 180, 255, 0.87);
-            --accent-color: rgba(200, 220, 255, 0.95);
-            --section-bg: rgba(20, 25, 40, 0.8);
-            --border-color: rgba(100, 150, 255, 0.2);
-            --glow-color: rgba(100, 150, 255, 0.1);
-            --particle-color: rgba(140, 180, 255, 0.2);
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
         body {
             margin: 0;
+            padding: 0;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            font-family: 'Space Mono', monospace;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            background-image: 
-                radial-gradient(circle at 20% 30%, var(--glow-color) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, var(--glow-color) 0%, transparent 50%);
+            justify-content: center;
+            background-color: white;
+            font-family: 'Press Start 2P', cursive;
+            text-align: center;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
         }
 
-        .navbar {
-            width: 100%;
+        .container {
+            max-width: 800px;
+            padding: 2rem;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: space-between;
-            padding: 1rem 2rem;
-            background-color: var(--section-bg);
-            border-bottom: 1px solid var(--border-color);
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            box-sizing: border-box;
+            gap: 2rem;
         }
 
         .logo-container {
-            position: relative;
             width: 200px;
-            height: 80px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            image-rendering: pixelated;
         }
 
         .logo {
-            width: 60px;
-            height: 60px;
-            margin: 10px;
-            filter: drop-shadow(0 0 10px var(--glow-color));
-            border-radius: 50%;
-            background: rgba(20, 25, 40, 0.8);
-            border: 1px solid var(--border-color);
-            position: relative;
-            z-index: 2;
+            max-width: 100%;
+            height: auto;
         }
 
-        .contract-address {
-            margin-left: auto;
-            padding-right: 2rem;
-        }
-
-        .mobile-menu-button {
-            display: none;
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-family: 'Space Mono', monospace;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu-button:hover {
-            background: rgba(140, 180, 255, 0.1);
-            border-color: var(--accent-color);
-        }
-
-        .mobile-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background-color: var(--section-bg);
-            border-bottom: 1px solid var(--border-color);
-            padding: 1rem;
-            box-sizing: border-box;
-            transform: translateY(-100%);
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu.show {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .particle {
-            position: absolute;
-            background: var(--particle-color);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 1;
-            opacity: 0.6;
-        }
-
-        .main-content {
-            max-width: 800px;
-            margin: 100px auto;
-            padding: 0 2rem;
-            text-align: center;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            color: var(--accent-color);
-            margin: 0;
-            text-shadow: 0 0 10px var(--glow-color);
-        }
-
-        .subheading {
-            font-size: 1.2rem;
-            margin: 1rem 0;
-            opacity: 0.9;
-            white-space: nowrap;
-            margin-bottom: 3rem;
-        }
-
-        .network-address {
-            font-family: 'Space Mono', monospace;
-            background: rgba(100, 150, 255, 0.1);
-            padding: 0.4em 0.6em;
-            border-radius: 4px;
-            border: 1px solid var(--border-color);
-            display: inline-block;
-            margin: 1rem 0;
-        }
-
-        .signup-container {
-            margin-top: 1rem;
+        .welcome-text {
+            font-size: 1rem;
+            color: black;
             margin-bottom: 2rem;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .signup-form {
-            display: flex;
-            gap: 0.5rem;
-            background: var(--section-bg);
-            padding: 0.5rem;
-            border-radius: 50px;
-            border: 1px solid var(--border-color);
-            max-width: 500px;
-            width: 100%;
-        }
-
-        .signup-input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            color: var(--text-color);
-            padding: 0.75rem 1.5rem;
-            font-family: 'Space Mono', monospace;
-            font-size: 1rem;
-            outline: none;
-        }
-
-        .signup-input::placeholder {
-            color: rgba(140, 180, 255, 0.4);
-        }
-
-        .signup-button {
-            background: rgba(140, 180, 255, 0.1);
-            color: var(--accent-color);
-            border: 1px solid var(--border-color);
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            font-family: 'Space Mono', monospace;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .signup-button:hover {
-            background: rgba(140, 180, 255, 0.2);
-            border-color: var(--accent-color);
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in forwards;
+            animation-delay: 0.5s;
         }
 
         .links-container {
-            margin-bottom: 3rem;
             display: flex;
-            gap: 2rem;
+            gap: 4rem;
+            flex-wrap: wrap;
             justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .link-wrapper {
+            position: relative;
+            padding: 1rem;
         }
 
         .links-container a {
+            color: black;
             text-decoration: none;
+            font-size: 0.8rem;
+            transition: all 0.5s ease;
             position: relative;
-            color: var(--text-color);
+            z-index: 1;
             padding: 0.5rem 1rem;
-            transition: color 0.3s ease-in-out;
-            margin: 0 0.5rem;
         }
 
-        .links-container a::before {
+        .pixel {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgb(255, 154, 162);
+            pointer-events: none;
+            border-radius: 50%;
+            transition: all 0.5s ease;
+            box-shadow: 0 0 4px rgba(255, 154, 162, 0.4);
+        }
+
+        .ambient-pixel {
+            opacity: 0.5;
+            animation: ambientFloat 4s infinite ease-in-out;
+            background: rgba(255, 154, 162, 0.8);
+        }
+
+        .hover-pixel {
+            opacity: 0;
+            animation: none;
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 154, 162, 0.9);
+            box-shadow: 0 0 6px rgba(255, 154, 162, 0.6);
+        }
+
+        .link-wrapper:hover .hover-pixel {
+            opacity: 0.8;
+            animation: activeFloat 2s infinite ease-in-out;
+        }
+
+        .link-wrapper:hover .ambient-pixel {
+            opacity: 0.7;
+            --scale: 1.2;
+            box-shadow: 0 0 8px rgba(255, 154, 162, 0.5);
+        }
+
+        .stay-button {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            color: black;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+        }
+
+        .stay-button::after {
             content: '';
             position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            height: 0;
-            background: var(--section-bg);
-            border: 1px solid transparent;
-            border-radius: 8px;
-            transition: all 0.3s ease-in-out;
-            z-index: -1;
-        }
-
-        .links-container a:hover {
-            color: var(--accent-color);
-        }
-
-        .links-container a:hover::before {
-            height: 100%;
-            border-color: var(--border-color);
-            background: rgba(140, 180, 255, 0.05);
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background-color: var(--section-bg);
-            border-top: 1px solid var(--border-color);
-            position: fixed;
-            bottom: 0;
+            bottom: -4px;
             left: 0;
             width: 100%;
-            z-index: 10;
-            box-sizing: border-box;
-        }
-
-        .notification {
-            position: fixed;
-            bottom: 100px;
-            right: 20px;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            background: var(--section-bg);
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            font-family: 'Space Mono', monospace;
-            transform: translateX(120%);
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 154, 162, 0.5), 
+                transparent
+            );
+            transform: scaleX(0);
             transition: transform 0.3s ease;
-            z-index: 1000;
         }
 
-        .notification.show {
-            transform: translateX(0);
+        .stay-button:hover::after {
+            transform: scaleX(1);
         }
 
-        @media (max-width: 768px) {
-            body {
-                justify-content: flex-start;
-                min-height: 100vh;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
             }
-
-            .navbar {
-                padding: 0.5rem 1rem;
-                height: auto;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
+        }
 
-            .logo-container {
-                width: 80px;
-                height: 60px;
+        @keyframes ambientFloat {
+            0%, 100% {
+                transform: translate(0, 0) scale(var(--scale, 1));
             }
-
-            .logo {
-                width: 40px;
-                height: 40px;
-                margin: 10px;
+            25% {
+                transform: translate(var(--x1, 5px), var(--y1, 5px)) scale(var(--scale, 1));
             }
-
-            .contract-address {
-                display: none;
+            75% {
+                transform: translate(var(--x2, -5px), var(--y2, -5px)) scale(var(--scale, 1));
             }
+        }
 
-            .mobile-menu-button {
-                display: block;
-                margin-left: auto;
+        @keyframes activeFloat {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
             }
-
-            .mobile-menu {
-                display: block;
-                text-align: center;
+            50% {
+                transform: translate(var(--active-x, 10px), var(--active-y, 10px)) scale(1.2);
             }
+        }
 
-            .main-content {
-                margin: 0;
-                padding: 80px 1rem 100px;
-                min-height: 100vh;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                box-sizing: border-box;
+        @media (max-width: 600px) {
+            .container {
+                padding: 1rem;
             }
-
-            h1 {
-                font-size: 2rem;
-            }
-
-            .subheading {
-                font-size: 1rem;
-                white-space: normal;
-                margin-bottom: 2rem;
-                padding: 0 1rem;
-            }
-
-            .signup-container {
-                padding: 0 1rem;
-            }
-
-            .signup-form {
-                flex-direction: column;
-                gap: 0.5rem;
-                padding: 0.75rem;
-                border-radius: 15px;
-            }
-
-            .signup-input {
-                width: 100%;
-                text-align: center;
-                padding: 0.75rem;
-            }
-
-            .signup-button {
-                width: 100%;
-                margin-top: 0.5rem;
-            }
-
+            
             .links-container {
                 flex-direction: column;
                 gap: 1rem;
-                margin-bottom: 0;
             }
 
-            .links-container a {
-                padding: 0.75rem 1rem;
-            }
-
-            footer {
-                padding: 1rem;
-                font-size: 0.9rem;
-            }
-
-            .notification {
-                bottom: 80px;
-                left: 50%;
-                transform: translateX(-50%) translateY(100%);
-                right: auto;
-                width: 90%;
-                max-width: 400px;
-                text-align: center;
-            }
-
-            .notification.show {
-                transform: translateX(-50%) translateY(0);
+            .stay-button {
+                bottom: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <nav class="navbar">
+    <div class="container">
         <div class="logo-container">
             <img src="arc_logo.png" alt="ARC Logo" class="logo">
         </div>
-        <div class="contract-address">
-            Contract Address: <span class="network-address">coming soon</span>
-        </div>
-        <button class="mobile-menu-button">Contract Address</button>
-        <div class="mobile-menu">
-            <div class="network-address">coming soon</div>
-        </div>
-    </nav>
-
-    <main class="main-content">
-        <h1>ARC</h1>
-        <p class="subheading">We are the AI Rig Complex. We build Rig, Rig builds Us.</p>
         
-        <div class="signup-container">
-            <div class="signup-form">
-                <input type="email" placeholder="arc@complex.com" class="signup-input">
-                <button class="signup-button">Join ARC</button>
-            </div>
+        <div class="welcome-text">
+            hi, I'm arc, everything's going to be okay
         </div>
 
         <div class="links-container">
-            <a href="https://x.com/arcdotfun">Consciousness Hub</a>
-            <a href="https://github.com/0xPlaygrounds/rig">Build with Rig</a>
+            <div class="link-wrapper">
+                <a href="https://x.com/arcdotfun">digital garden</a>
+            </div>
+            <div class="link-wrapper">
+                <a href="https://github.com/0xPlaygrounds/rig">build with rig</a>
+            </div>
         </div>
-    </main>
-
-    <footer>
-        <p>© 2024 AI Rig Complex. All rights reserved.</p>
-    </footer>
-
-    <div class="notification"></div>
+    </div>
+    
+    <a href="stay.html" class="stay-button">stay a while, get comfy</a>
 
     <script>
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            
-            const size = Math.random() * 2 + 1;
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            
-            const angle = Math.random() * Math.PI * 2;
-            const distance = Math.random() * 80 + 20;
-            const centerX = 40;
-            const centerY = 40;
-            
-            let x = centerX + Math.cos(angle) * distance;
-            let y = centerY + Math.sin(angle) * distance;
-            
-            particle.style.left = `${x}px`;
-            particle.style.top = `${y}px`;
-            
-            particle.style.opacity = Math.random() * 0.5 + 0.2;
-            
-            document.querySelector('.logo-container').appendChild(particle);
-            
-            let currentAngle = angle;
-            const speed = 0.3 + Math.random() * 0.4;
-            const radius = distance;
-            
-            function animate() {
-                currentAngle += speed * 0.02;
-                x = centerX + Math.cos(currentAngle) * radius;
-                y = centerY + Math.sin(currentAngle) * radius;
+        const linkWrappers = document.querySelectorAll('.link-wrapper');
+        
+        linkWrappers.forEach(wrapper => {
+            // Ambient particles (always visible)
+            for (let i = 0; i < 4; i++) {
+                const pixel = document.createElement('div');
+                pixel.className = 'pixel ambient-pixel';
+                wrapper.appendChild(pixel);
                 
-                particle.style.left = `${x}px`;
-                particle.style.top = `${y}px`;
+                // Position particles in a more visible area around the link
+                const angle = (i / 4) * Math.PI * 2;
+                const radius = 25;
+                pixel.style.left = `${Math.cos(angle) * radius + 50}%`;
+                pixel.style.top = `${Math.sin(angle) * radius + 50}%`;
                 
-                requestAnimationFrame(animate);
-            }
-            
-            animate();
-        }
-
-        const isMobile = window.innerWidth <= 768;
-        const particleCount = isMobile ? 50 : 100;
-        const maxParticles = isMobile ? 75 : 150;
-
-        for(let i = 0; i < particleCount; i++) {
-            createParticle();
-        }
-
-        setInterval(() => {
-            if (document.querySelectorAll('.particle').length < maxParticles) {
-                createParticle();
-            }
-        }, 1000);
-
-        document.querySelector('.mobile-menu-button').addEventListener('click', function() {
-            const mobileMenu = document.querySelector('.mobile-menu');
-            mobileMenu.classList.toggle('show');
-        });
-
-        document.addEventListener('click', function(event) {
-            const mobileMenu = document.querySelector('.mobile-menu');
-            const mobileMenuButton = document.querySelector('.mobile-menu-button');
-            
-            if (!mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
-                mobileMenu.classList.remove('show');
-            }
-        });
-
-        function showNotification(message) {
-            const notification = document.querySelector('.notification');
-            notification.textContent = message;
-            notification.classList.add('show');
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
-        }
-
-        const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSc_aOcz6EEC7Sn6E2W2lvq2TD17nF9tImczFBWXeEHfsGuQdQ/formResponse';
-        const ENTRY_ID = '1808091578';
-
-        document.querySelector('.signup-button').addEventListener('click', async (e) => {
-            e.preventDefault();
-            const emailInput = document.querySelector('.signup-input');
-            const submitButton = document.querySelector('.signup-button');
-            
-            if (!emailInput.value) {
-                showNotification('Please enter an email address');
-                return;
+                // More noticeable movement
+                pixel.style.setProperty('--x1', `${Math.random() * 15 - 7.5}px`);
+                pixel.style.setProperty('--y1', `${Math.random() * 15 - 7.5}px`);
+                pixel.style.setProperty('--x2', `${Math.random() * 15 - 7.5}px`);
+                pixel.style.setProperty('--y2', `${Math.random() * 15 - 7.5}px`);
+                pixel.style.animationDelay = `${Math.random() * 2}s`;
             }
 
-            try {
-                submitButton.disabled = true;
-                emailInput.disabled = true;
+            // Hover-activated particles
+            for (let i = 0; i < 6; i++) {
+                const pixel = document.createElement('div');
+                pixel.className = 'pixel hover-pixel';
+                wrapper.appendChild(pixel);
                 
-                const formData = new FormData();
-                formData.append(`entry.${ENTRY_ID}`, emailInput.value);
+                const angle = (i / 6) * Math.PI * 2;
+                const radius = 30;
+                pixel.style.left = `${Math.cos(angle) * radius + 50}%`;
+                pixel.style.top = `${Math.sin(angle) * radius + 50}%`;
                 
-                await fetch(FORM_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    body: formData
-                });
-                
-                emailInput.value = '';
-                showNotification('Thanks for signing up!');
-            } catch (error) {
-                console.error('Error:', error);
-                showNotification('Signup failed. Please try again.');
-            } finally {
-                submitButton.disabled = false;
-                emailInput.disabled = false;
+                pixel.style.setProperty('--active-x', `${Math.random() * 25 - 12.5}px`);
+                pixel.style.setProperty('--active-y', `${Math.random() * 25 - 12.5}px`);
+                pixel.style.animationDelay = `${Math.random() * 0.5}s`;
             }
         });
     </script>

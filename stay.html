@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stay a While - ARC</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: 'Press Start 2P', cursive;
+            background: linear-gradient(
+                180deg,
+                #ff9dad 0%,
+                #ffd4e5 15%,
+                #97e5d7 40%,
+                #65b6aa 60%,
+                #2a4858 100%
+            );
+            color: #ffffff;
+            opacity: 0;
+            animation: pageLoad 1.5s ease-in forwards;
+            overflow: hidden;
+        }
+
+        .mountains {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 60vh;
+            background: 
+                linear-gradient(
+                    165deg,
+                    transparent 0%,
+                    transparent 50%,
+                    #1a3344 50%,
+                    #1a3344 100%
+                ) 30% 0,
+                linear-gradient(
+                    195deg,
+                    transparent 0%,
+                    transparent 50%,
+                    #234556 50%,
+                    #234556 100%
+                ) 60% 0;
+            background-size: 50% 100%;
+            z-index: 1;
+        }
+
+        .trees {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 30vh;
+            background: 
+                radial-gradient(
+                    circle at 20% 90%,
+                    #ff6b8b 0%,
+                    #ff6b8b 5%,
+                    transparent 5.5%
+                ),
+                radial-gradient(
+                    circle at 50% 85%,
+                    #ff6b8b 0%,
+                    #ff6b8b 3%,
+                    transparent 3.5%
+                ),
+                radial-gradient(
+                    circle at 80% 88%,
+                    #ff6b8b 0%,
+                    #ff6b8b 4%,
+                    transparent 4.5%
+                );
+            z-index: 2;
+        }
+
+        .lake {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 20vh;
+            background: linear-gradient(
+                to bottom,
+                rgba(101, 182, 170, 0.6) 0%,
+                rgba(42, 72, 88, 0.8) 100%
+            );
+            z-index: 3;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 40vh;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 40px 70px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 50px 160px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 90px 40px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 130px 80px, #ffffff, rgba(0,0,0,0));
+            background-repeat: repeat;
+            z-index: 0;
+        }
+
+        .content {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            z-index: 4;
+        }
+
+        .pixel-text {
+            font-size: 1rem;
+            line-height: 2;
+            margin: 1rem 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            animation: textFadeIn 1.5s ease-in forwards;
+            animation-delay: 1s;
+        }
+
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.8rem;
+            padding: 0.5rem 1rem;
+            border: 2px solid #ffffff;
+            transition: all 0.3s ease;
+            z-index: 5;
+        }
+
+        .back-link:hover {
+            background-color: #ffffff;
+            color: #2a4858;
+        }
+
+        @keyframes pageLoad {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes textFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .floating-pixels {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .pixel {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.4);
+            animation: float 3s infinite ease-in-out;
+        }
+
+        .pixel:nth-child(1) { left: 20%; top: 30%; animation-delay: 0s; }
+        .pixel:nth-child(2) { left: 40%; top: 40%; animation-delay: 0.5s; }
+        .pixel:nth-child(3) { left: 60%; top: 35%; animation-delay: 1s; }
+        .pixel:nth-child(4) { left: 80%; top: 45%; animation-delay: 1.5s; }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="mountains"></div>
+    <div class="trees"></div>
+    <div class="lake"></div>
+    <div class="floating-pixels">
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+        <div class="pixel"></div>
+    </div>
+    <a href="index.html" class="back-link">← go back</a>
+    <div class="content">
+        <div class="pixel-text">
+            welcome to a quiet place<br>
+            take a deep breath<br>
+            everything will be alright
+        </div>
+    </div>
+</body>
+</html>
