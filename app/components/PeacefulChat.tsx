@@ -4,7 +4,7 @@ import { Send, Smile } from 'lucide-react';
 
 const PeacefulChat = () => {
   const [messages, setMessages] = useState([
-    { id: 1, text: "hi, arc here, stay a while and recharge.", sender: "host", timestamp: new Date() },
+    { id: 1, text: "hi, arc here, what's on your mind?", sender: "host", timestamp: new Date() },
   ]);
   const [newMessage, setNewMessage] = useState("");
 
@@ -30,8 +30,7 @@ const PeacefulChat = () => {
       >
         {/* Chat header */}
         <div className="px-6 py-4 border-b border-gray-100">
-          <h3 className="text-lg font-serif text-gray-700">Peaceful Community</h3>
-          <p className="text-sm text-gray-500">Share your peaceful thoughts</p>
+          <h3 className="text-lg font-serif text-gray-700">arc chat</h3>
         </div>
 
         {/* Messages area */}
@@ -77,7 +76,7 @@ const PeacefulChat = () => {
               type="text"
               value={newMessage}
               onChange={(e) => setNewMessage(e.target.value)}
-              placeholder="Share your peaceful thought..."
+              placeholder="i'm feeling a bit overwhelmed..."
               className="flex-1 bg-gray-50/50 rounded-full px-4 py-2 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-100 transition-shadow"
             />
             <motion.button

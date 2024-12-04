@@ -9,10 +9,10 @@ const CircularPeacefulPlayer = () => {
 
   // List of audio tracks
   const tracks = [
-    '/track1.mp3',
-    '/track2.mp3',
-    '/track3.mp3',
-    '/track4.mp3'
+    '/arc_lofi/track1.mp3',
+    '/arc_lofi/track2.mp3',
+    '/arc_lofi/track3.mp3',
+    '/arc_lofi/track4.mp3'
   ];
 
   const [play, { pause, stop, duration, sound }] = useSound(tracks[currentTrackIndex], {
