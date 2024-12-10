@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARC Manifesto - AI Rig Complex</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/png" href="assets/images/arc_logo.png">
+</head>
+<body>
+    <div class="min-h-screen flex flex-col relative">
+        <header class="fixed top-0 w-full z-50 bg-white-blur shadow-sm">
+            <nav class="container">
+                <a href="index.html" class="logo-link">
+                    <img src="assets/images/arc_logo.png" alt="ARC Logo" width="32" height="32">
+                    <span class="logo-text">arc</span>
+                </a>
+                <div class="nav-links">
+                    <a href="manifesto.html" aria-label="ARC Manifesto">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </a>
+                    <a href="https://x.com/arcdotfun" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/0xPlaygrounds/rig" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                        </svg>
+                    </a>
+                </div>
+            </nav>
+        </header>
+
+        <main class="flex-grow flex flex-col items-center justify-start relative overflow-hidden pt-20 pb-12">
+            <div class="background-decoration">
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+            </div>
+            <div class="manifesto-content fade-in">
+                <h1 class="manifesto-title">we build arc, arc builds us</h1>
+                
+                <div class="manifesto-text">
+                    <p>
+                        Software is undergoing its most profound transformation since the birth of computing - and most developers haven't noticed yet.
+                    </p>
+                    
+                    <p>
+                        The change isn't about better algorithms or faster processors. It's about meaning. Modern AI agents can now process and generate human-like semantics at scale, turning dumb programs into contextually-aware systems.
+                    </p>
+                    
+                    <p class="emphasis">This shifts everything.</p>
+                    
+                    <p>
+                        Tasks that once required complex specialized code - understanding natural language, analyzing images, generating human-like responses - can now be handled through simple prompts and orchestration logic. The hard problems of semantic understanding are abstracted away.
+                    </p>
+                    
+                    <p>
+                        But here's where it gets interesting: These capabilities map perfectly onto existing cloud architectures. The same patterns we use for microservices - modularity, small footprint, rapid scaling - are ideal for deploying swarms of semantic agents. LLMs need new compute infrastructure but agents only need new thinking.
+                    </p>
+                    
+                    <p>
+                        The first wave is already here in the public cloud. Soon it will spread to edge devices, robots, and decentralized networks. Not necessarily as sci-fi artificial life, but as practical tools that understand context and meaning.
+                    </p>
+                    
+                    <p class="emphasis">
+                        This is why we built Rig. An open source framework to build portable, modular, lightweight AI agents in rust.
+                    </p>
+                </div>
+            </div>
+        </main>
+
+        <footer class="bg-white-blur shadow-sm mt-auto">
+            <div class="container">
+                <div class="footer-content">
+                    <p class="copyright">© <span id="currentYear"></span> arc</p>
+                    <div class="footer-links">
+                        <a href="privacy.html">Privacy</a>
+                        <a href="terms.html">Terms</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
