@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Twitter, Github, Waves, Scroll } from 'lucide-react'
+import { Twitter, Github, Scroll } from 'lucide-react'
 
 export function Navbar() {
   return (
