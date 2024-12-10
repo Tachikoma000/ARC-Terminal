@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Twitter, Github, Waves } from 'lucide-react'
+import { Twitter, Github, Waves, Scroll } from 'lucide-react'
 
 export function Navbar() {
   return (
@@ -17,6 +17,13 @@ export function Navbar() {
         </Link>
         <div className="space-x-8 flex items-center">
           <Link 
+            href="/arc-manifesto" 
+            className="text-gray-700 hover:text-gray-900"
+            aria-label="ARC Manifesto"
+          >
+            <Scroll size={20} />
+          </Link>
+          <Link 
             href="https://x.com/arcdotfun" 
             className="text-gray-700 hover:text-gray-900"
             aria-label="Digital Garden"
@@ -29,13 +36,6 @@ export function Navbar() {
             aria-label="Build with Rig"
           >
             <Github size={20} />
-          </Link>
-          <Link 
-            href="/peaceful" 
-            className="text-gray-700 hover:text-gray-900"
-            aria-label="Peaceful Thoughts"
-          >
-            <Waves size={20} />
           </Link>
         </div>
       </nav>
