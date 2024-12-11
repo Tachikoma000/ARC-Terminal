@@ -68,6 +68,16 @@ nav {
 
 .nav-links a:hover .icon {
     color: #1a1a1a;
+    opacity: 0.8;
+}
+
+.nav-links img.icon {
+    filter: opacity(0.6);
+    transition: filter 0.2s;
+}
+
+.nav-links a:hover img.icon {
+    filter: opacity(0.9);
 }
 
 /* Main content */
