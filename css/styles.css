@@ -76,7 +76,8 @@ nav {
     transition: filter 0.2s;
 }
 
-.nav-links a:hover img.icon {
+.nav-links a:hover img.icon,
+.nav-links a.active img.icon {
     filter: opacity(0.9);
 }
 
@@ -456,5 +457,73 @@ footer {
 
     .section-title {
         font-size: 1.25rem;
+    }
+}
+
+.escrow-section {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.escrow-title {
+    font-size: 1.1rem;
+    color: #1a1a1a;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.escrow-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.escrow-item {
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.escrow-item:hover {
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.escrow-label {
+    font-size: 0.9rem;
+    color: #4a5568;
+    min-width: 120px;
+}
+
+.escrow-address {
+    font-family: 'Monaco', 'Consolas', monospace;
+    font-size: 0.9rem;
+    color: #1a1a1a;
+    padding: 0.25rem 0.5rem;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.escrow-address:hover {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 768px) {
+    .escrow-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .escrow-address {
+        word-break: break-all;
+        width: 100%;
     }
 }

@@ -26,9 +26,7 @@
                         </svg>
                     </a>
                     <a href="tokenomics.html" aria-label="ARC Tokenomics" class="active">
-                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
+                        <img src="assets/images/tokenomics_icon.png" alt="Tokenomics" class="icon" width="20" height="20">
                     </a>
                     <a href="https://x.com/arcdotfun" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
                         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -68,29 +66,67 @@
 
                     <!-- Right side - Details -->
                     <div class="tokenomics-text">
+                        <h2 class="section-title">token allocation breakdown</h2>
                         
                         <div class="allocation-item">
-                            <h3>early contributors (10%)</h3>
-                            <p>Allocated to early contributors, developers, and participants in the Arc and Rig ecosystem.</p>
+                            <h3>circulating supply (90%)</h3>
+                            <p>fairly launched and available to the world. this ensures wide distribution and community ownership from day one.</p>
                         </div>
 
                         <div class="allocation-item">
-                            <h3>treasury (10%)</h3>
-                            <p>Reserved for ongoing development, operational expenses, and strategic partnerships.</p>
+                            <h3>arc prize pool (5.5%)</h3>
+                            <p>prize pool for participants and winners of the arc experiments. this allocation incentivizes active participation and rewards those who contribute to the ecosystem's growth.</p>
                         </div>
 
                         <div class="allocation-item">
-                            <h3>arc prize pool (5%)</h3>
-                            <p>Prize pool for winners of the Arc treasure hunt.</p>
-                        </div>
-
-                        <div class="allocation-item">
-                            <h3>community (10%)</h3>
-                            <p>Reserved for community building initiatives, and ecosystem growth.</p>
+                            <h3>team (4.5%)</h3>
+                            <p>development of the rig framework, arc ecosystem, and community. this allocation ensures continued development and improvement of the platform.</p>
                         </div>
 
                         <div class="vesting-note">
-                            <p class="emphasis">all allocations will be locked in escrow and vested over 1 year to ensure long-term alignment and prevent market disruption. the prize pool will be airdropped to treasure hunt winners.</p>
+                            <p class="emphasis">team allocations are locked in escrow and vested over 1 year to ensure long-term alignment and prevent market disruption. the prize pool will be released at the end of each arc experiment</p>
+                        </div>
+
+                        <div class="escrow-section">
+                            <h3 class="escrow-title">team escrow wallets</h3>
+                            <div class="escrow-grid">
+                                <div class="escrow-item">
+                                    <span class="escrow-label">escrow wallet 1</span>
+                                    <code class="escrow-address" onclick="navigator.clipboard.writeText(this.textContent)">Ap5X6HmtL4fcy2zCcAVhmhRZhrhKJjDagmkQZURUWGqV</code>
+                                </div>
+                                <div class="escrow-item">
+                                    <span class="escrow-label">escrow wallet 2</span>
+                                    <code class="escrow-address" onclick="navigator.clipboard.writeText(this.textContent)">E38PbYFWsMV6csnSSDkfz3YVgxHka5BZhv9b1mqFHDoX</code>
+                                </div>
+                                <div class="escrow-item">
+                                    <span class="escrow-label">escrow wallet 3</span>
+                                    <code class="escrow-address" onclick="navigator.clipboard.writeText(this.textContent)">DWMZSspWKYa1gZzhr8KQVtKBrzU778vhYuMCo59nCC7Z</code>
+                                </div>
+                                <div class="escrow-item">
+                                    <span class="escrow-label">escrow wallet 4</span>
+                                    <code class="escrow-address" onclick="navigator.clipboard.writeText(this.textContent)">8baRPufxZrZYq4wwkTsBkpTyz17w6JgbpPrzHWfqqrqL</code>
+                                </div>
+                                <div class="escrow-item">
+                                    <span class="escrow-label">escrow wallet 5</span>
+                                    <code class="escrow-address" onclick="navigator.clipboard.writeText(this.textContent)">7ziUixTvfbhum67VcaqxDH88PbvxNiSpgsxRFoKfm3EA</code>
+                                </div>
+                                <div class="escrow-item">
+                                    <span class="escrow-label">escrow wallet 6</span>
+                                    <code class="escrow-address" onclick="navigator.clipboard.writeText(this.textContent)">5o7tdWMcHaruJZNcKxZeqnaXytN86D5qsTH4d1hZgmZx</code>
+                                </div>
+                                <div class="escrow-item">
+                                    <span class="escrow-label">escrow wallet 7</span>
+                                    <code class="escrow-address" onclick="navigator.clipboard.writeText(this.textContent)">EVfLDLqWGkPzGQbGtxYZmLdE2auN7DtuzRuifaRhvB3k</code>
+                                </div>
+                                <div class="escrow-item">
+                                    <span class="escrow-label">escrow wallet 8</span>
+                                    <code class="escrow-address" onclick="navigator.clipboard.writeText(this.textContent)">9td9nntEdY5uWy7mzcqMQkWAHszajunV6zKWan1QtQyA</code>
+                                </div>
+                                <div class="escrow-item">
+                                    <span class="escrow-label">escrow wallet 9</span>
+                                    <code class="escrow-address" onclick="navigator.clipboard.writeText(this.textContent)">6kqHBNdyRJ9QzJX8eBZcEQWRLpwky2bZkyPfZTqa2yoL</code>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -105,22 +141,18 @@
         new Chart(ctx, {
             type: 'pie',
             data: {
-                labels: ['Early Contributors', 'Treasury', 'Arc Prize Pool', 'Community', 'Unallocated'],
+                labels: ['Circulating Supply', 'Arc Prize Pool', 'Team'],
                 datasets: [{
-                    data: [10, 10, 5, 10, 65],
+                    data: [90, 5.5, 4.5],
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.8)',
-                        'rgba(54, 162, 235, 0.8)',
-                        'rgba(255, 206, 86, 0.8)',
                         'rgba(75, 192, 192, 0.8)',
-                        'rgba(153, 102, 255, 0.8)'
+                        'rgba(255, 206, 86, 0.8)',
+                        'rgba(255, 99, 132, 0.8)'
                     ],
                     borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
                         'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)'
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(255, 99, 132, 1)'
                     ],
                     borderWidth: 1
                 }]
