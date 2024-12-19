@@ -7,6 +7,39 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" type="image/png" href="assets/images/arc_logo.png">
+    <style>
+        /* Prologue nav icon styles */
+        .nav-prologue-icon {
+            position: relative;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-prologue-ring {
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(26, 26, 26, 0.2);
+            border-radius: 50%;
+        }
+
+        .nav-prologue-dot {
+            width: 4px;
+            height: 4px;
+            background: currentColor;
+            border-radius: 50%;
+        }
+
+        .nav-prologue-icon:hover .nav-prologue-ring {
+            border-color: rgba(26, 26, 26, 0.4);
+        }
+
+        .nav-prologue-icon:hover .nav-prologue-dot {
+            transform: scale(1.2);
+        }
+    </style>
 </head>
 <body>
     <div class="min-h-screen flex flex-col relative">
@@ -17,6 +50,10 @@
                     <span class="logo-text">arc</span>
                 </a>
                 <div class="nav-links">
+                    <a href="prologue.html" aria-label="ARC Prologue" class="nav-prologue-icon">
+                        <div class="nav-prologue-ring"></div>
+                        <div class="nav-prologue-dot"></div>
+                    </a>
                     <a href="manifesto.html" aria-label="ARC Manifesto" class="active">
                         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>

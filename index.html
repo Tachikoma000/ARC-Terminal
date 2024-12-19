@@ -14,6 +14,40 @@
 
     <!-- Favicon - Add your favicon here -->
     <link rel="icon" type="image/png" href="assets/images/arc_logo.png">
+
+    <style>
+        /* Prologue nav icon styles */
+        .nav-prologue-icon {
+            position: relative;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-prologue-ring {
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(26, 26, 26, 0.2);
+            border-radius: 50%;
+        }
+
+        .nav-prologue-dot {
+            width: 4px;
+            height: 4px;
+            background: currentColor;
+            border-radius: 50%;
+        }
+
+        .nav-prologue-icon:hover .nav-prologue-ring {
+            border-color: rgba(26, 26, 26, 0.4);
+        }
+
+        .nav-prologue-icon:hover .nav-prologue-dot {
+            transform: scale(1.2);
+        }
+    </style>
 </head>
 <body>
     <!-- Main Container -->
@@ -29,6 +63,10 @@
 
                 <!-- Navigation Icons -->
                 <div class="nav-links">
+                    <a href="prologue.html" aria-label="ARC Prologue" class="nav-prologue-icon">
+                        <div class="nav-prologue-ring"></div>
+                        <div class="nav-prologue-dot"></div>
+                    </a>
                     <!-- Manifesto Link -->
                     <a href="manifesto.html" aria-label="ARC Manifesto">
                         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -61,7 +99,7 @@
         </header>
 
         <!-- Main Content -->
-        <main class="flex-1 flex flex-col justify-center items-center pt-16 pb-16">
+        <main class="flex-grow flex flex-col items-center justify-start relative overflow-hidden pt-20 pb-12">
             <!-- Animated Background -->
             <div class="background-decoration">
                 <div class="wave"></div>
