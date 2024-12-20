@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-browser-detected">
 <head>
     <!-- Essential Meta Tags -->
     <meta charset="UTF-8">
@@ -12,48 +12,395 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
 
-    <!-- Favicon - Add your favicon here -->
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/images/arc_logo.png">
 
     <style>
-        /* Prologue nav icon styles */
-        .nav-prologue-icon {
-            position: relative;
-            width: 24px;
-            height: 24px;
+        /* Base styles for background that work well in Chrome */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('assets/images/arc_bg9.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -2;
+            opacity: 0.9;
+            mix-blend-mode: multiply;
+            background-blend-mode: multiply;
+        }
+    
+        /* Add a subtle overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 0.2),
+                rgba(255, 255, 255, 0.3)
+            );
+            z-index: -1;
+            backdrop-filter: blur(3px);
+            mix-blend-mode: overlay;
+        }
+    
+        /* Safari-specific styles */
+        .safari body::before {
+            opacity: 0.8;
+            mix-blend-mode: normal;
+            background-blend-mode: normal;
+        }
+    
+        .safari body::after {
+            background: rgba(255, 255, 255, 0.3);
+            mix-blend-mode: normal;
+        }
+    
+        /* Chrome-specific styles */
+        .chrome body::before {
+            opacity: 0.4;
+            mix-blend-mode: multiply;
+            background-blend-mode: multiply;
+        }
+    
+        .chrome body::after {
+            background: linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 0.15),
+                rgba(255, 255, 255, 0.25)
+            );
+            mix-blend-mode: soft-light;
+        }
+    
+        /* Content container styles */
+        .main-content {
+            padding: 3rem;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 100px);
+        }
+    
+        /* Ensure text is readable on the background */
+        .main-title {
+            color: #1a1a1a;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+            line-height: 1.2;
+            font-weight: 700;
+        }
+    
+        .main-subtitle {
+            color: #1a1a1a;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    
+        .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 0.875rem;
+            color: #1a1a1a;
+            letter-spacing: 0.02em;
+            transition: all 0.2s ease;
+            max-width: calc(100% - 2rem);
+            cursor: pointer;
+        }
+    
+        .badge:hover {
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.08);
+            transform: translateY(-1px);
+        }
+    
+        /* Adjust header for better contrast */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+    
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+    
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+    
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: #1a1a1a;
+            transition: opacity 0.2s ease;
+        }
+    
+        .logo-link:hover {
+            opacity: 0.8;
+        }
+    
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+    
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+    
+        /* Ensure each link's contents (icons) are centered vertically */
+        .nav-links a {
             display: flex;
             align-items: center;
             justify-content: center;
         }
-
+    
+        .icon {
+            width: 20px;
+            height: 20px;
+            color: #4a5568;
+            transition: all 0.2s ease;
+        }
+    
+        .nav-links a:hover .icon {
+            color: #1a1a1a;
+            transform: scale(1.1);
+        }
+    
+        /* Logo container adjustments */
+        .logo-container {
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+    
+        .logo-container:hover {
+            transform: scale(1.05);
+        }
+    
+        .logo-container img {
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+            max-width: 120px;
+            height: auto;
+        }
+    
+        /* Prologue nav icon styles */
+        .nav-prologue-icon {
+            position: relative;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a5568;
+            transition: all 0.2s ease;
+            vertical-align: middle;
+            line-height: 1;
+        }
+    
         .nav-prologue-ring {
             position: absolute;
-            inset: 0;
-            border: 1px solid rgba(26, 26, 26, 0.2);
+            inset: 2px;
+            border: 1.5px solid currentColor;
             border-radius: 50%;
+            opacity: 0.8;
+            transition: all 0.2s ease;
         }
-
+    
         .nav-prologue-dot {
-            width: 4px;
-            height: 4px;
+            width: 3px;
+            height: 3px;
             background: currentColor;
             border-radius: 50%;
+            opacity: 0.8;
+            transition: all 0.2s ease;
         }
-
-        .nav-prologue-icon:hover .nav-prologue-ring {
-            border-color: rgba(26, 26, 26, 0.4);
+    
+        .nav-prologue-icon:hover {
+            color: #1a1a1a;
+            transform: scale(1.1);
         }
-
+    
+        .nav-prologue-icon:hover .nav-prologue-ring,
         .nav-prologue-icon:hover .nav-prologue-dot {
-            transform: scale(1.2);
+            opacity: 1;
+        }
+    
+        .nav-prologue-icon.active {
+            color: #1a1a1a;
+        }
+    
+        .nav-prologue-icon.active .nav-prologue-ring,
+        .nav-prologue-icon.active .nav-prologue-dot {
+            opacity: 1;
+        }
+    
+        /* Enhanced fade-in animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+    
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            body::before {
+                background-position: 65% center;
+            }
+    
+            .main-content {
+                padding: 2rem 1.5rem;
+                margin: 1rem;
+                width: calc(100% - 2rem);
+                min-height: calc(100vh - 80px);
+            }
+    
+            .main-title {
+                font-size: 2.5rem;
+                margin-bottom: 0.75rem;
+            }
+    
+            .main-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 1.5rem;
+                padding: 0 1rem;
+            }
+    
+            .badge {
+                padding: 0.75rem 1.25rem;
+                font-size: 0.75rem;
+                max-width: 100%;
+                white-space: normal;
+                word-break: break-all;
+            }
+    
+            .logo-container img {
+                max-width: 100px;
+            }
+    
+            .nav-links {
+                gap: 1.25rem;
+            }
+        }
+    
+        /* Smaller mobile screens */
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 1.5rem 1rem;
+            }
+    
+            .main-title {
+                font-size: 2rem;
+            }
+    
+            .main-subtitle {
+                font-size: 1rem;
+                padding: 0;
+            }
+    
+            .badge {
+                padding: 0.5rem 1rem;
+                font-size: 0.7rem;
+            }
+    
+            .logo-container img {
+                max-width: 80px;
+            }
+    
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+    
+        /* High-DPI screens */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .main-title,
+            .main-subtitle {
+                text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+            }
+        }
+    
+        /* Reduced motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            .fade-in {
+                animation: none;
+                opacity: 1;
+                transform: none;
+            }
+    
+            .badge {
+                transition: none;
+            }
+    
+            .badge:hover {
+                transform: none;
+            }
+    
+            .logo-container {
+                transition: none;
+            }
+    
+            .logo-container:hover {
+                transform: none;
+            }
         }
     </style>
+    
 </head>
 <body>
     <!-- Main Container -->
     <div class="min-h-screen flex flex-col relative">
         <!-- Navigation Header -->
-        <header class="fixed top-0 w-full z-50 bg-white-blur shadow-sm">
+        <header>
             <nav class="container">
                 <!-- Logo and Home Link -->
                 <a href="index.html" class="logo-link">
@@ -67,7 +414,6 @@
                         <div class="nav-prologue-ring"></div>
                         <div class="nav-prologue-dot"></div>
                     </a>
-                    <!-- Manifesto Link -->
                     <a href="manifesto.html" aria-label="ARC Manifesto">
                         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
@@ -76,7 +422,6 @@
                     <a href="tokenomics.html" aria-label="ARC Tokenomics">
                         <img src="assets/images/tokenomics_icon.png" alt="Tokenomics" class="icon" width="20" height="20">
                     </a>
-                    <!-- Twitter Link -->
                     <a href="https://x.com/arcdotfun" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
                         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
@@ -88,7 +433,6 @@
                     <a href="https://dexscreener.com/solana/j3b6dvhes2y1cbmtvz5tcwxnegsjjdbukxduvdpoqms7" target="_blank" rel="noopener noreferrer" aria-label="Dexscreener">
                         <img src="assets/images/dexscreener.png" alt="Dexscreener" class="icon" width="20" height="20">
                     </a>
-                    <!-- GitHub Link -->
                     <a href="https://github.com/0xPlaygrounds/rig" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
@@ -99,14 +443,7 @@
         </header>
 
         <!-- Main Content -->
-        <main class="flex-grow flex flex-col items-center justify-start relative overflow-hidden pt-20 pb-12">
-            <!-- Animated Background -->
-            <div class="background-decoration">
-                <div class="wave"></div>
-                <div class="wave"></div>
-                <div class="wave"></div>
-            </div>
-
+        <main class="flex-grow flex flex-col items-center justify-center relative overflow-hidden pt-20 pb-12">
             <!-- Content Container -->
             <div class="main-content">
                 <!-- Logo -->
@@ -121,11 +458,11 @@
 
                 <!-- Main Text -->
                 <h1 class="main-title fade-in">hi, we're arc</h1>
-                <p class="main-subtitle fade-in">we're here to make you take the red pill. then, the blue pill.</p>
+                <p class="main-subtitle fade-in">we take the red pill then the blue pill.</p>
 
                 <!-- Badge -->
-                <div class="badge fade-in">
-                    <span>CA: 61V8vBaqAGMpgDQi4JcAwo1dmBGHsyhzodcPqnEVpump</span>
+                <div class="badge fade-in" onclick="navigator.clipboard.writeText(this.querySelector('span').textContent)">
+                    <span>61V8vBaqAGMpgDQi4JcAwo1dmBGHsyhzodcPqnEVpump</span>
                 </div>
             </div>
         </main>
@@ -133,5 +470,53 @@
 
     <!-- JavaScript -->
     <script src="js/script.js"></script>
+    <script>
+        // Browser detection script
+        function detectBrowser() {
+            const html = document.documentElement;
+            
+            // Remove any existing browser classes
+            html.classList.remove('chrome', 'safari', 'firefox', 'edge');
+            
+            // More reliable Safari detection
+            const isSafari = !navigator.userAgent.includes('Chrome') 
+                           && !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
+            
+            if (isSafari) {
+                html.classList.add('safari');
+            }
+            // Detect Chrome
+            else if (navigator.userAgent.indexOf("Chrome") !== -1) {
+                html.classList.add('chrome');
+            }
+            // Detect Firefox
+            else if (navigator.userAgent.indexOf("Firefox") !== -1) {
+                html.classList.add('firefox');
+            }
+            // Detect Edge
+            else if (navigator.userAgent.indexOf("Edg") !== -1) {
+                html.classList.add('edge');
+            }
+        }
+
+        // Run detection immediately
+        detectBrowser();
+
+        // Also run on load to ensure it catches any dynamic changes
+        window.addEventListener('load', detectBrowser);
+
+        // Add click-to-copy functionality for the badge
+        document.querySelector('.badge').addEventListener('click', function() {
+            const text = this.querySelector('span').textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                // Optional: Add visual feedback for copy
+                const originalBackground = this.style.background;
+                this.style.background = 'rgba(255, 255, 255, 0.9)';
+                setTimeout(() => {
+                    this.style.background = originalBackground;
+                }, 200);
+            });
+        });
+    </script>
 </body>
 </html>
