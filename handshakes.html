@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" class="no-browser-detected">
 <head>
-    <!-- Essential Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ARC - AI Rig Complex">
+    <meta name="description" content="ARC - AI Rig Complex Handshakes">
+    <title>ARC Handshakes - AI Rig Complex</title>
     
-    <title>ARC - AI Rig Complex</title>
-
-    <!-- External Resources -->
+    <!-- Fonts & CSS -->
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
-
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/images/arc_logo.png">
-
+    
     <style>
         /* Base styles for background that work well in Chrome */
         body::before {
@@ -58,19 +54,17 @@
             mix-blend-mode: normal;
             background-blend-mode: normal;
         }
-    
         .safari body::after {
             background: rgba(255, 255, 255, 0.3);
             mix-blend-mode: normal;
         }
-    
-        /* Chrome-specific styles */
+
+        /* Chrome-specific styles (copied from index.html) */
         .chrome body::before {
             opacity: 0.4;
             mix-blend-mode: multiply;
             background-blend-mode: multiply;
         }
-    
         .chrome body::after {
             background: linear-gradient(
                 to bottom,
@@ -79,66 +73,156 @@
             );
             mix-blend-mode: soft-light;
         }
-    
-        /* Content container styles */
-        .main-content {
-            padding: 3rem;
-            width: 100%;
-            max-width: 800px;
+
+        /* Handshakes content grid */
+        .handshakes-content {
+            max-width: 1200px;
             margin: 0 auto;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: calc(100vh - 100px);
+            padding: 2rem;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
         }
-    
-        /* Ensure text is readable on the background */
-        .main-title {
-            color: #1a1a1a;
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
-            line-height: 1.2;
-            font-weight: 700;
+
+        .text-black {
+            color: #000;
         }
-    
-        .main-subtitle {
-            color: #1a1a1a;
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
-            line-height: 1.5;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-    
-        .badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.7);
-            padding: 0.75rem 2rem;
-            border-radius: 9999px;
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid #e2e8f0;
+            border-radius: 1.5rem;
+            padding: 2rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            font-family: 'Monaco', 'Consolas', monospace;
-            font-size: 0.875rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
             color: #1a1a1a;
-            letter-spacing: 0.02em;
-            transition: all 0.2s ease;
-            max-width: calc(100% - 2rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .card-content {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .card-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .card-content ul {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .card-content li {
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .emphasis {
+            color: #1a1a1a;
+            font-weight: 500;
+            margin: 1.5rem 0;
+        }
+
+        /* Steps styling */
+        .track {
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .track-title {
+            font-size: 1.1rem;
+            color: #1a1a1a;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .track-description {
+            color: #4a5568;
+            font-size: 1rem;
+        }
+
+        /* Wallet address styles */
+        #wallet-address {
+            display: block;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 0.9rem;
+            color: #1a1a1a;
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 0.375rem;
+            margin: 0.5rem 0;
+            word-break: break-all;
+        }
+
+        .copy-button {
+            padding: 0.5rem 1rem;
+            background: #1a1a1a;
+            color: white;
+            border: none;
+            border-radius: 0.375rem;
             cursor: pointer;
+            font-family: 'Lora', serif;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
         }
-    
-        .badge:hover {
-            background: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.08);
-            transform: translateY(-1px);
+
+        .copy-button:hover {
+            opacity: 0.9;
         }
-    
-        /* Adjust header for better contrast */
+
+        .take-pill-button {
+            padding: 0.75rem 1.5rem;
+            background: #1a1a1a;
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-family: 'Lora', serif;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            margin-top: 2rem;
+        }
+
+        .take-pill-button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive design */
+        @media (max-width: 1024px) {
+            .handshakes-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                height: 56px;
+            }
+            .nav-links {
+                gap: 1.25rem;
+            }
+            .page-header {
+                font-size: 2.5rem;
+                margin-bottom: 1.5rem;
+            }
+            .card {
+                padding: 2rem;
+            }
+        }
+
+        /* Header (same as index) */
         header {
             background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
@@ -149,20 +233,17 @@
             z-index: 50;
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
-    
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 1rem;
         }
-    
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 1rem 0;
         }
-    
         .logo-link {
             display: flex;
             align-items: center;
@@ -171,58 +252,37 @@
             color: #1a1a1a;
             transition: opacity 0.2s ease;
         }
-    
         .logo-link:hover {
             opacity: 0.8;
         }
-    
         .logo-text {
             font-size: 1.25rem;
             font-weight: 700;
         }
-    
         .nav-links {
             display: flex;
             gap: 2rem;
             align-items: center;
         }
-    
-        /* Ensure each link's contents (icons) are centered vertically */
         .nav-links a {
             display: flex;
             align-items: center;
             justify-content: center;
         }
-    
+
+        /* Shared icon styles for both nav & footer */
         .icon {
             width: 20px;
             height: 20px;
             color: #4a5568;
             transition: all 0.2s ease;
         }
-    
         .nav-links a:hover .icon {
             color: #1a1a1a;
             transform: scale(1.1);
         }
-    
-        /* Logo container adjustments */
-        .logo-container {
-            margin-bottom: 2rem;
-            transition: transform 0.3s ease;
-        }
-    
-        .logo-container:hover {
-            transform: scale(1.05);
-        }
-    
-        .logo-container img {
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-            max-width: 120px;
-            height: auto;
-        }
-    
-        /* Prologue nav icon styles */
+
+        /* Prologue Icon (same as index) */
         .nav-prologue-icon {
             position: relative;
             width: 20px;
@@ -235,7 +295,6 @@
             vertical-align: middle;
             line-height: 1;
         }
-    
         .nav-prologue-ring {
             position: absolute;
             inset: 2px;
@@ -244,7 +303,6 @@
             opacity: 0.8;
             transition: all 0.2s ease;
         }
-    
         .nav-prologue-dot {
             width: 3px;
             height: 3px;
@@ -253,148 +311,23 @@
             opacity: 0.8;
             transition: all 0.2s ease;
         }
-    
         .nav-prologue-icon:hover {
             color: #1a1a1a;
             transform: scale(1.1);
         }
-    
         .nav-prologue-icon:hover .nav-prologue-ring,
         .nav-prologue-icon:hover .nav-prologue-dot {
             opacity: 1;
         }
-    
         .nav-prologue-icon.active {
             color: #1a1a1a;
         }
-    
         .nav-prologue-icon.active .nav-prologue-ring,
         .nav-prologue-icon.active .nav-prologue-dot {
             opacity: 1;
         }
-    
-        /* Enhanced fade-in animation */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-    
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    
-        /* Mobile optimizations */
-        @media (max-width: 768px) {
-            body::before {
-                background-position: 65% center;
-            }
-    
-            .main-content {
-                padding: 2rem 1.5rem;
-                margin: 1rem;
-                width: calc(100% - 2rem);
-                min-height: calc(100vh - 80px);
-            }
-    
-            .main-title {
-                font-size: 2.5rem;
-                margin-bottom: 0.75rem;
-            }
-    
-            .main-subtitle {
-                font-size: 1.1rem;
-                margin-bottom: 1.5rem;
-                padding: 0 1rem;
-            }
-    
-            .badge {
-                padding: 0.75rem 1.25rem;
-                font-size: 0.75rem;
-                max-width: 100%;
-                white-space: normal;
-                word-break: break-all;
-            }
-    
-            .logo-container img {
-                max-width: 100px;
-            }
-    
-            .nav-links {
-                gap: 1.25rem;
-            }
-        }
-    
-        /* Smaller mobile screens */
-        @media (max-width: 480px) {
-            .main-content {
-                padding: 1.5rem 1rem;
-            }
-    
-            .main-title {
-                font-size: 2rem;
-            }
-    
-            .main-subtitle {
-                font-size: 1rem;
-                padding: 0;
-            }
-    
-            .badge {
-                padding: 0.5rem 1rem;
-                font-size: 0.7rem;
-            }
-    
-            .logo-container img {
-                max-width: 80px;
-            }
-    
-            .nav-links {
-                gap: 1rem;
-            }
-        }
-    
-        /* High-DPI screens */
-        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-            .main-title,
-            .main-subtitle {
-                text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
-            }
-        }
-    
-        /* Reduced motion preferences */
-        @media (prefers-reduced-motion: reduce) {
-            .fade-in {
-                animation: none;
-                opacity: 1;
-                transform: none;
-            }
-    
-            .badge {
-                transition: none;
-            }
-    
-            .badge:hover {
-                transform: none;
-            }
-    
-            .logo-container {
-                transition: none;
-            }
-    
-            .logo-container:hover {
-                transform: none;
-            }
-        }
-    
-        /* Footer styles */
+
+        /* Footer (copied & unified from index) */
         footer {
             position: fixed;
             bottom: 0;
@@ -408,7 +341,6 @@
             backdrop-filter: blur(5px);
             border-top-left-radius: 1rem;
         }
-    
         footer .container {
             display: flex;
             justify-content: flex-end;
@@ -416,49 +348,29 @@
             padding: 0;
             margin: 0;
         }
-    
-        footer .icon {
-            width: 20px;
-            height: 20px;
-            opacity: 0.7;
-            transition: all 0.2s ease;
-        }
-    
+        /* Same hover effect as nav for footer icons */
         footer a:hover .icon {
-            opacity: 1;
+            color: #1a1a1a;
             transform: scale(1.1);
         }
-    
+
         @media (max-width: 768px) {
             footer {
                 padding: 0.75rem;
                 gap: 1.25rem;
             }
-    
-            footer .icon {
-                width: 18px;
-                height: 18px;
-            }
         }
-    
         @media (max-width: 480px) {
             footer {
                 padding: 0.5rem;
                 gap: 1rem;
             }
-    
-            footer .icon {
-                width: 16px;
-                height: 16px;
-            }
         }
     </style>
-    
 </head>
 <body>
-    <!-- Main Container -->
     <div class="min-h-screen flex flex-col relative">
-        <!-- Navigation Header -->
+        <!-- Navigation Header (same as index.html) -->
         <header>
             <nav class="container">
                 <!-- Logo and Home Link -->
@@ -494,31 +406,116 @@
         </header>
 
         <!-- Main Content -->
-        <main class="flex-grow flex flex-col items-center justify-center relative overflow-hidden pt-20 pb-12">
-            <!-- Content Container -->
-            <div class="main-content">
-                <!-- Logo -->
-                <div class="logo-container fade-in">
-                    <img src="assets/images/arc_logo_transparent.png" 
-                         alt="ARC Logo" 
-                         width="120" 
-                         height="120" 
-                         loading="eager"
-                         class="mx-auto">
+        <main class="flex-grow flex flex-col items-center justify-start relative overflow-hidden pt-20 pb-12">
+            <div class="background-decoration">
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+            </div>
+
+            <!-- Make "/the_handshake" bold here -->
+            <div class="manifesto-title text-black">
+                <strong>/the_handshake</strong>
+            </div>
+            
+            <div class="handshakes-content fade-in">
+                <!-- Left Card -->
+                <div class="card">
+                    <h2 class="card-title">take the pill</h2>
+                    <div class="card-content">
+                        <p>
+                            llms have basically given software the ability to actually *get* what humans mean and want. even with just the tools we have right now, we've barely scratched the surface of what's possible with this new kind of software
+                        </p>
+                        
+                        <p>
+                            so we're putting out this open call to all the builders, dreamers, and chaos mages out there. show us what you can create when you combine:
+                        </p>
+                        
+                        <ul>
+                            <li>the meaning-processing power of llms</li>
+                            <li>the composability of blockchain tech</li>
+                            <li>your unique vision of what could be</li>
+                        </ul>
+                        
+                        <!-- Bolded "some ideas to get you started:" -->
+                        <p class="emphasis"><strong>some ideas to get you started:</strong></p>
+                        <ul>
+                            <li>swarm intelligence systems</li>
+                            <li>creative data pipelines</li>
+                            <li>agents that do things™ onchain</li>
+                            <li>report/insight generators</li>
+                            <li>pattern recognition at scale</li>
+                            <li>knowledge crawlers</li>
+                        </ul>
+                        
+                        <!-- Bolded "the important stuff:" -->
+                        <p class="emphasis"><strong>the important stuff:</strong></p>
+                        <ul>
+                            <li>
+                                to prevent spam, 500 arc to this address:
+                                <span id="wallet-address">7bkz4uXxnmbEEa36ZQrsJ5JQ5nDZHwSxYmkJLHZ74S7K</span>
+                                <button class="copy-button" onclick="copyWalletAddress()">copy</button>
+                            </li>
+                            <li>your project must use rig in some way</li>
+                            <li>token isn't required (and won't be penalized in any way if it doesn't have one)</li>
+                            <li>select projects building with solana will also be reviewed by the solana foundation</li>
+                            <li>select projects building with arbitrum stylus could also be eligible for stylus sprint grants</li>
+                            <li>some doxing will be required</li>
+                        </ul>
+                        
+                        <!-- Bolded entire "remember..." sentence -->
+                        <p class="emphasis">
+                            <strong>remember: we're not just building more chatbots. we're looking for ideas that explore how ai can make web3 more intelligent, more human, and maybe even a little bit magical</strong>
+                        </p>
+                    </div>
                 </div>
 
-                <!-- Main Text -->
-                <h1 class="main-title fade-in">hi, we're arc</h1>
-                <p class="main-subtitle fade-in">we take the red pill then the blue pill.</p>
+                <!-- Right Card -->
+                <div class="card">
+                    <h2 class="card-title">join the complex</h2>
+                    <div class="card-content">
+                        <div class="track">
+                            <div class="track-title">step 1</div>
+                            <div class="track-description">submit project proposal</div>
+                        </div>
+                        
+                        <div class="track">
+                            <div class="track-title">step 2</div>
+                            <div class="track-description">go through review process</div>
+                        </div>
+                        
+                        <div class="track">
+                            <div class="track-title">step 3</div>
+                            <div class="track-description">get added to arc registry if selected</div>
+                        </div>
 
-                <!-- Badge -->
-                <div class="badge fade-in" onclick="navigator.clipboard.writeText(this.querySelector('span').textContent)">
-                    <span>61V8vBaqAGMpgDQi4JcAwo1dmBGHsyhzodcPqnEVpump</span>
+                        <div class="track">
+                            <div class="track-description">
+                                if your project is not selected at step 3, you're welcome 
+                                to reapply with a new or refined proposal. if you are selected,
+                                proceed to step 4
+                            </div>
+                        </div>
+
+                        <div class="track">
+                            <div class="track-title">step 4</div>
+                            <div class="track-description">raise arc or sol to create LP pair</div>
+                            <div class="track-description">(from the community or yourself. we will jump in on special cases)</div>
+                        </div>
+
+                        <div class="button-container">
+                            <a href="https://app.formbricks.com/s/cm4t1si9f000011bybmvw769d?preview=true" 
+                               target="_blank" 
+                               rel="noopener noreferrer">
+                                <button class="take-pill-button">/arccellerate</button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
 
-        <!-- Footer -->
+        <!-- Footer (same as index.html, icons now match nav) -->
         <footer>
             <div class="container">
                 <a href="https://x.com/arcdotfun" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
@@ -537,9 +534,17 @@
         </footer>
     </div>
 
-    <!-- JavaScript -->
-    <script src="js/script.js"></script>
     <script>
+        // Copy wallet address
+        function copyWalletAddress() {
+            const address = document.getElementById("wallet-address").textContent.trim();
+            navigator.clipboard.writeText(address).then(() => {
+                alert("Wallet address copied to clipboard!");
+            }, () => {
+                alert("Failed to copy wallet address. Please copy manually.");
+            });
+        }
+
         // Browser detection script
         function detectBrowser() {
             const html = document.documentElement;
@@ -571,21 +576,8 @@
         // Run detection immediately
         detectBrowser();
 
-        // Also run on load
+        // Also run on load to ensure it catches any dynamic changes
         window.addEventListener('load', detectBrowser);
-
-        // Add click-to-copy functionality for the badge
-        document.querySelector('.badge').addEventListener('click', function() {
-            const text = this.querySelector('span').textContent;
-            navigator.clipboard.writeText(text).then(() => {
-                // Optional: Add visual feedback
-                const originalBackground = this.style.background;
-                this.style.background = 'rgba(255, 255, 255, 0.9)';
-                setTimeout(() => {
-                    this.style.background = originalBackground;
-                }, 200);
-            });
-        });
     </script>
 </body>
 </html>
