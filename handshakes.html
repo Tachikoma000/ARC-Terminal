@@ -1,583 +1,596 @@
 <!DOCTYPE html>
 <html lang="en" class="no-browser-detected">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ARC - AI Rig Complex Handshakes">
-    <title>ARC Handshakes - AI Rig Complex</title>
-    
-    <!-- Fonts & CSS -->
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="icon" type="image/png" href="assets/images/arc_logo.png">
-    
-    <style>
-        /* Base styles for background that work well in Chrome */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('assets/images/arc_bg9.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            z-index: -2;
-            opacity: 0.9;
-            mix-blend-mode: multiply;
-            background-blend-mode: multiply;
-        }
-    
-        /* Add a subtle overlay */
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                to bottom,
-                rgba(255, 255, 255, 0.2),
-                rgba(255, 255, 255, 0.3)
-            );
-            z-index: -1;
-            backdrop-filter: blur(3px);
-            mix-blend-mode: overlay;
-        }
-    
-        /* Safari-specific styles */
-        .safari body::before {
-            opacity: 0.8;
-            mix-blend-mode: normal;
-            background-blend-mode: normal;
-        }
-        .safari body::after {
-            background: rgba(255, 255, 255, 0.3);
-            mix-blend-mode: normal;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ARC - AI Rig Complex Handshakes">
+  <title>ARC Handshakes - AI Rig Complex</title>
+  
+  <!-- Fonts & CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/png" href="assets/images/arc_logo.png">
+  
+  <style>
+    /* Base styles for background that work well in Chrome */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('assets/images/arc_bg9.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: -2;
+      opacity: 0.9;
+      mix-blend-mode: multiply;
+      background-blend-mode: multiply;
+    }
 
-        /* Chrome-specific styles (copied from index.html) */
-        .chrome body::before {
-            opacity: 0.4;
-            mix-blend-mode: multiply;
-            background-blend-mode: multiply;
-        }
-        .chrome body::after {
-            background: linear-gradient(
-                to bottom,
-                rgba(255, 255, 255, 0.15),
-                rgba(255, 255, 255, 0.25)
-            );
-            mix-blend-mode: soft-light;
-        }
+    /* Add a subtle overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.2),
+          rgba(255, 255, 255, 0.3)
+      );
+      z-index: -1;
+      backdrop-filter: blur(3px);
+      mix-blend-mode: overlay;
+    }
 
-        /* Handshakes content grid */
-        .handshakes-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
+    /* Safari-specific styles */
+    .safari body::before {
+      opacity: 0.8;
+      mix-blend-mode: normal;
+      background-blend-mode: normal;
+    }
+    .safari body::after {
+      background: rgba(255, 255, 255, 0.3);
+      mix-blend-mode: normal;
+    }
 
-        .text-black {
-            color: #000;
-        }
+    /* Chrome-specific styles (copied from index.html) */
+    .chrome body::before {
+      opacity: 0.4;
+      mix-blend-mode: multiply;
+      background-blend-mode: multiply;
+    }
+    .chrome body::after {
+      background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.15),
+          rgba(255, 255, 255, 0.25)
+      );
+      mix-blend-mode: soft-light;
+    }
 
-        .card {
-            background-color: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(8px);
-            border: 1px solid #e2e8f0;
-            border-radius: 1.5rem;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        }
+    /* Handshakes content grid */
+    .handshakes-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
 
-        .card-title {
-            font-size: 1.5rem;
-            color: #1a1a1a;
-            margin-bottom: 1.5rem;
-        }
+    /* Slightly smaller padding + scrollable if too long */
+    .card {
+      background-color: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(8px);
+      border: 1px solid #e2e8f0;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      max-height: 70vh;
+      overflow-y: auto; /* scroll if content is very long */
+    }
 
-        .card-content {
-            color: #4a5568;
-            line-height: 1.6;
-        }
+    .card-title {
+      font-size: 1.5rem;
+      color: #1a1a1a;
+      margin-bottom: 1.5rem;
+    }
 
-        .card-content p {
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
-        }
+    .card-content {
+      color: #4a5568;
+      line-height: 1.6;
+    }
 
-        .card-content ul {
-            margin: 1.5rem 0;
-            padding-left: 1.5rem;
-        }
+    .card-content p {
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
 
-        .card-content li {
-            margin-bottom: 0.75rem;
-            font-size: 1rem;
-        }
+    .card-content ul {
+      margin: 1.5rem 0;
+      padding-left: 1.5rem;
+    }
 
-        .emphasis {
-            color: #1a1a1a;
-            font-weight: 500;
-            margin: 1.5rem 0;
-        }
+    .card-content li {
+      margin-bottom: 0.75rem;
+      font-size: 1rem;
+    }
 
-        /* Steps styling */
-        .track {
-            background: rgba(255, 255, 255, 0.5);
-            border: 1px solid #e2e8f0;
-            border-radius: 0.75rem;
-            padding: 1rem;
-            margin-bottom: 1rem;
-        }
+    .emphasis {
+      color: #1a1a1a;
+      font-weight: 500;
+      margin: 1.5rem 0;
+    }
 
-        .track-title {
-            font-size: 1.1rem;
-            color: #1a1a1a;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-        }
+    /* Steps styling */
+    .track {
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid #e2e8f0;
+      border-radius: 0.75rem;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
 
-        .track-description {
-            color: #4a5568;
-            font-size: 1rem;
-        }
+    .track-title {
+      font-size: 1.1rem;
+      color: #1a1a1a;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
 
-        /* Wallet address styles */
-        #wallet-address {
-            display: block;
-            font-family: 'Monaco', 'Consolas', monospace;
-            font-size: 0.9rem;
-            color: #1a1a1a;
-            padding: 0.5rem;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 0.375rem;
-            margin: 0.5rem 0;
-            word-break: break-all;
-        }
+    .track-description {
+      color: #4a5568;
+      font-size: 1rem;
+    }
 
-        .copy-button {
-            padding: 0.5rem 1rem;
-            background: #1a1a1a;
-            color: white;
-            border: none;
-            border-radius: 0.375rem;
-            cursor: pointer;
-            font-family: 'Lora', serif;
-            font-size: 0.9rem;
-            transition: all 0.2s ease;
-        }
+    /* Wallet address styles */
+    #wallet-address {
+      display: block;
+      font-family: 'Monaco', 'Consolas', monospace;
+      font-size: 0.9rem;
+      color: #1a1a1a;
+      padding: 0.5rem;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 0.375rem;
+      margin: 0.5rem 0;
+      word-break: break-all;
+    }
 
-        .copy-button:hover {
-            opacity: 0.9;
-        }
+    .copy-button {
+      padding: 0.5rem 1rem;
+      background: #1a1a1a;
+      color: white;
+      border: none;
+      border-radius: 0.375rem;
+      cursor: pointer;
+      font-family: 'Lora', serif;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+    }
 
-        .take-pill-button {
-            padding: 0.75rem 1.5rem;
-            background: #1a1a1a;
-            color: white;
-            border: none;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            font-family: 'Lora', serif;
-            font-size: 1rem;
-            transition: all 0.2s ease;
-            margin-top: 2rem;
-        }
+    .copy-button:hover {
+      opacity: 0.9;
+    }
 
-        .take-pill-button:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
+    .take-pill-button {
+      padding: 0.75rem 1.5rem;
+      background: #1a1a1a;
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+      margin-top: 2rem;
+    }
 
-        /* Responsive design */
-        @media (max-width: 1024px) {
-            .handshakes-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-        }
+    .take-pill-button:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
 
-        @media (max-width: 768px) {
-            nav {
-                height: 56px;
-            }
-            .nav-links {
-                gap: 1.25rem;
-            }
-            .page-header {
-                font-size: 2.5rem;
-                margin-bottom: 1.5rem;
-            }
-            .card {
-                padding: 2rem;
-            }
-        }
+    /* Give main content extra bottom padding so footer won't overlap */
+    main {
+      padding-bottom: 120px; /* Adjust as needed */
+    }
 
-        /* Header (same as index) */
-        header {
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 50;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-        .logo-link {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-decoration: none;
-            color: #1a1a1a;
-            transition: opacity 0.2s ease;
-        }
-        .logo-link:hover {
-            opacity: 0.8;
-        }
-        .logo-text {
-            font-size: 1.25rem;
-            font-weight: 700;
-        }
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-        .nav-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    /* Responsive design */
+    @media (max-width: 1024px) {
+      .handshakes-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
 
-        /* Shared icon styles for both nav & footer */
-        .icon {
-            width: 20px;
-            height: 20px;
-            color: #4a5568;
-            transition: all 0.2s ease;
-        }
-        .nav-links a:hover .icon {
-            color: #1a1a1a;
-            transform: scale(1.1);
-        }
+    @media (max-width: 768px) {
+      nav {
+        height: 56px;
+      }
+      .nav-links {
+        gap: 1.25rem;
+      }
+      .page-header {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+      }
+      .card {
+        padding: 1.5rem;
+      }
+    }
 
-        /* Prologue Icon (same as index) */
-        .nav-prologue-icon {
-            position: relative;
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #4a5568;
-            transition: all 0.2s ease;
-            vertical-align: middle;
-            line-height: 1;
-        }
-        .nav-prologue-ring {
-            position: absolute;
-            inset: 2px;
-            border: 1.5px solid currentColor;
-            border-radius: 50%;
-            opacity: 0.8;
-            transition: all 0.2s ease;
-        }
-        .nav-prologue-dot {
-            width: 3px;
-            height: 3px;
-            background: currentColor;
-            border-radius: 50%;
-            opacity: 0.8;
-            transition: all 0.2s ease;
-        }
-        .nav-prologue-icon:hover {
-            color: #1a1a1a;
-            transform: scale(1.1);
-        }
-        .nav-prologue-icon:hover .nav-prologue-ring,
-        .nav-prologue-icon:hover .nav-prologue-dot {
-            opacity: 1;
-        }
-        .nav-prologue-icon.active {
-            color: #1a1a1a;
-        }
-        .nav-prologue-icon.active .nav-prologue-ring,
-        .nav-prologue-icon.active .nav-prologue-dot {
-            opacity: 1;
-        }
+    /* Header (same as index) */
+    header {
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+    .logo-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: #1a1a1a;
+      transition: opacity 0.2s ease;
+    }
+    .logo-link:hover {
+      opacity: 0.8;
+    }
+    .logo-text {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    .nav-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        /* Footer (copied & unified from index) */
-        footer {
-            position: fixed;
-            bottom: 0;
-            right: 0;
-            padding: 1rem;
-            z-index: 50;
-            display: flex;
-            justify-content: flex-end;
-            gap: 1.5rem;
-            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.9) 20%);
-            backdrop-filter: blur(5px);
-            border-top-left-radius: 1rem;
-        }
-        footer .container {
-            display: flex;
-            justify-content: flex-end;
-            gap: 1.5rem;
-            padding: 0;
-            margin: 0;
-        }
-        /* Same hover effect as nav for footer icons */
-        footer a:hover .icon {
-            color: #1a1a1a;
-            transform: scale(1.1);
-        }
+    /* Shared icon styles for both nav & footer */
+    .icon {
+      width: 20px;
+      height: 20px;
+      color: #4a5568;
+      transition: all 0.2s ease;
+    }
+    .nav-links a:hover .icon {
+      color: #1a1a1a;
+      transform: scale(1.1);
+    }
 
-        @media (max-width: 768px) {
-            footer {
-                padding: 0.75rem;
-                gap: 1.25rem;
-            }
-        }
-        @media (max-width: 480px) {
-            footer {
-                padding: 0.5rem;
-                gap: 1rem;
-            }
-        }
-    </style>
+    /* Prologue Icon (same as index) */
+    .nav-prologue-icon {
+      position: relative;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #4a5568;
+      transition: all 0.2s ease;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .nav-prologue-ring {
+      position: absolute;
+      inset: 2px;
+      border: 1.5px solid currentColor;
+      border-radius: 50%;
+      opacity: 0.8;
+      transition: all 0.2s ease;
+    }
+    .nav-prologue-dot {
+      width: 3px;
+      height: 3px;
+      background: currentColor;
+      border-radius: 50%;
+      opacity: 0.8;
+      transition: all 0.2s ease;
+    }
+    .nav-prologue-icon:hover {
+      color: #1a1a1a;
+      transform: scale(1.1);
+    }
+    .nav-prologue-icon:hover .nav-prologue-ring,
+    .nav-prologue-icon:hover .nav-prologue-dot {
+      opacity: 1;
+    }
+    .nav-prologue-icon.active {
+      color: #1a1a1a;
+    }
+    .nav-prologue-icon.active .nav-prologue-ring,
+    .nav-prologue-icon.active .nav-prologue-dot {
+      opacity: 1;
+    }
+
+    /* Footer (same as index.html, icons now match nav) */
+    footer {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      padding: 1rem;
+      z-index: 50;
+      display: flex;
+      justify-content: flex-end;
+      gap: 1.5rem;
+      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.9) 20%);
+      backdrop-filter: blur(5px);
+      border-top-left-radius: 1rem;
+    }
+    footer .container {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1.5rem;
+      padding: 0;
+      margin: 0;
+    }
+    /* Same hover effect as nav for footer icons */
+    footer a:hover .icon {
+      color: #1a1a1a;
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+      footer {
+        padding: 0.75rem;
+        gap: 1.25rem;
+      }
+    }
+    @media (max-width: 480px) {
+      footer {
+        padding: 0.5rem;
+        gap: 1rem;
+      }
+    }
+
+    /* Make "/the_handshake" pure black and above overlays */
+    .manifesto-title {
+      position: relative;
+      z-index: 9999;
+    }
+    .manifesto-title strong {
+      color: #000 !important;
+      font-weight: 800;
+    }
+  </style>
 </head>
 <body>
-    <div class="min-h-screen flex flex-col relative">
-        <!-- Navigation Header (same as index.html) -->
-        <header>
-            <nav class="container">
-                <!-- Logo and Home Link -->
-                <a href="index.html" class="logo-link">
-                    <img src="assets/images/arc_logo.png" alt="ARC Logo" width="32" height="32">
-                    <span class="logo-text">arc</span>
-                </a>
+  <div class="min-h-screen flex flex-col relative">
+    <!-- Navigation Header (same as index.html) -->
+    <header>
+      <nav class="container">
+        <!-- Logo and Home Link -->
+        <a href="index.html" class="logo-link">
+          <img src="assets/images/arc_logo.png" alt="ARC Logo" width="32" height="32">
+          <span class="logo-text">arc</span>
+        </a>
 
-                <!-- Navigation Icons -->
-                <div class="nav-links">
-                    <!-- Prologue Icon -->
-                    <a href="prologue.html" aria-label="ARC Prologue" class="nav-prologue-icon">
-                        <div class="nav-prologue-ring"></div>
-                        <div class="nav-prologue-dot"></div>
-                    </a>
+        <!-- Navigation Icons -->
+        <div class="nav-links">
+          <!-- Prologue Icon -->
+          <a href="prologue.html" aria-label="ARC Prologue" class="nav-prologue-icon">
+            <div class="nav-prologue-ring"></div>
+            <div class="nav-prologue-dot"></div>
+          </a>
 
-                    <!-- Manifesto Icon -->
-                    <a href="manifesto.html" aria-label="ARC Manifesto">
-                        <img src="assets/images/idea_icon.png" alt="Tokenomics" class="icon" width="20" height="20">
-                    </a>
+          <!-- Manifesto Icon -->
+          <a href="manifesto.html" aria-label="ARC Manifesto">
+            <img src="assets/images/idea_icon.png" alt="Tokenomics" class="icon" width="20" height="20">
+          </a>
 
-                    <!-- Tokenomics Icon -->
-                    <a href="tokenomics.html" aria-label="ARC Tokenomics">
-                        <img src="assets/images/tokenomics_icon.png" alt="Tokenomics" class="icon" width="20" height="20">
-                    </a>
-                    
-                    <!-- Handshakes Icon (NEW) -->
-                    <a href="handshakes.html" aria-label="ARC Handshakes">
-                        <img src="assets/images/handshake_icon.png" alt="Handshakes" class="icon" width="20" height="20">
-                    </a>
-                </div>
-            </nav>
-        </header>
+          <!-- Tokenomics Icon -->
+          <a href="tokenomics.html" aria-label="ARC Tokenomics">
+            <img src="assets/images/tokenomics_icon.png" alt="Tokenomics" class="icon" width="20" height="20">
+          </a>
+          
+          <!-- Handshakes Icon (NEW) -->
+          <!--
+<a href="handshakes.html" aria-label="ARC Handshakes">
+  <img src="assets/images/handshake_icon.png" alt="Handshakes" class="icon" width="20" height="20">
+</a>
+-->
+        </div>
+      </nav>
+    </header>
 
-        <!-- Main Content -->
-        <main class="flex-grow flex flex-col items-center justify-start relative overflow-hidden pt-20 pb-12">
-            <div class="background-decoration">
-                <div class="wave"></div>
-                <div class="wave"></div>
-                <div class="wave"></div>
-            </div>
+    <!-- Main Content -->
+    <main class="flex-grow flex flex-col items-center justify-start relative overflow-hidden pt-20 pb-12">
+      <div class="background-decoration">
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+      </div>
 
-            <!-- Make "/the_handshake" bold here -->
-            <div class="manifesto-title text-black">
-                <strong>/the_handshake</strong>
+      <!-- Manifesto Title with pure black "/the_handshake" -->
+      <div class="manifesto-title">
+        <strong>/the_handshake</strong>
+      </div>
+      
+      <div class="handshakes-content fade-in">
+        <!-- Left Card -->
+        <div class="card">
+          <h2 class="card-title">take the pill</h2>
+          <div class="card-content">
+            <p>
+              llms have basically given software the ability to actually *get* what humans mean and want. even with just the tools we have right now, we've barely scratched the surface of what's possible with this new kind of software
+            </p>
+            
+            <p>
+              so we're putting out this open call to all the builders, dreamers, and chaos mages out there. show us what you can create when you combine:
+            </p>
+            
+            <ul>
+              <li>the meaning-processing power of llms</li>
+              <li>the composability of blockchain tech</li>
+              <li>your unique vision of what could be</li>
+            </ul>
+            
+            <p class="emphasis"><strong>some ideas to get you started:</strong></p>
+            <ul>
+              <li>swarm intelligence systems</li>
+              <li>creative data pipelines</li>
+              <li>agents that do things™ onchain</li>
+              <li>report/insight generators</li>
+              <li>pattern recognition at scale</li>
+              <li>knowledge crawlers</li>
+            </ul>
+            
+            <p class="emphasis"><strong>the important stuff:</strong></p>
+            <ul>
+              <li>
+                to prevent spam, send 500 arc to this address:
+                <span id="wallet-address">7bkz4uXxnmbEEa36ZQrsJ5JQ5nDZHwSxYmkJLHZ74S7K</span>
+                <button class="copy-button" onclick="copyWalletAddress()">copy</button>
+              </li>
+              <li>your project must use rig in some way</li>
+              <li>token isn't required (and won't be penalized in any way if it doesn't have one)</li>
+              <li>select projects building with solana will also be reviewed by the solana foundation</li>
+              <li>select projects building with arbitrum stylus could also be eligible for stylus sprint grants</li>
+              <li>some doxing will be required</li>
+            </ul>
+            
+            <p class="emphasis">
+              <strong>remember: we're not just building more chatbots. we're looking for ideas that explore how ai can make web3 more intelligent, more human, and maybe even a little bit magical</strong>
+            </p>
+          </div>
+        </div>
+
+        <!-- Right Card -->
+        <div class="card">
+          <h2 class="card-title">join the complex</h2>
+          <div class="card-content">
+            <div class="track">
+              <div class="track-title">step 1</div>
+              <div class="track-description">submit project proposal</div>
             </div>
             
-            <div class="handshakes-content fade-in">
-                <!-- Left Card -->
-                <div class="card">
-                    <h2 class="card-title">take the pill</h2>
-                    <div class="card-content">
-                        <p>
-                            llms have basically given software the ability to actually *get* what humans mean and want. even with just the tools we have right now, we've barely scratched the surface of what's possible with this new kind of software
-                        </p>
-                        
-                        <p>
-                            so we're putting out this open call to all the builders, dreamers, and chaos mages out there. show us what you can create when you combine:
-                        </p>
-                        
-                        <ul>
-                            <li>the meaning-processing power of llms</li>
-                            <li>the composability of blockchain tech</li>
-                            <li>your unique vision of what could be</li>
-                        </ul>
-                        
-                        <!-- Bolded "some ideas to get you started:" -->
-                        <p class="emphasis"><strong>some ideas to get you started:</strong></p>
-                        <ul>
-                            <li>swarm intelligence systems</li>
-                            <li>creative data pipelines</li>
-                            <li>agents that do things™ onchain</li>
-                            <li>report/insight generators</li>
-                            <li>pattern recognition at scale</li>
-                            <li>knowledge crawlers</li>
-                        </ul>
-                        
-                        <!-- Bolded "the important stuff:" -->
-                        <p class="emphasis"><strong>the important stuff:</strong></p>
-                        <ul>
-                            <li>
-                                to prevent spam, send 500 arc to this address:
-                                <span id="wallet-address">7bkz4uXxnmbEEa36ZQrsJ5JQ5nDZHwSxYmkJLHZ74S7K</span>
-                                <button class="copy-button" onclick="copyWalletAddress()">copy</button>
-                            </li>
-                            <li>your project must use rig in some way</li>
-                            <li>token isn't required (and won't be penalized in any way if it doesn't have one)</li>
-                            <li>select projects building with solana will also be reviewed by the solana foundation</li>
-                            <li>select projects building with arbitrum stylus could also be eligible for stylus sprint grants</li>
-                            <li>some doxing will be required</li>
-                        </ul>
-                        
-                        <!-- Bolded entire "remember..." sentence -->
-                        <p class="emphasis">
-                            <strong>remember: we're not just building more chatbots. we're looking for ideas that explore how ai can make web3 more intelligent, more human, and maybe even a little bit magical</strong>
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Right Card -->
-                <div class="card">
-                    <h2 class="card-title">join the complex</h2>
-                    <div class="card-content">
-                        <div class="track">
-                            <div class="track-title">step 1</div>
-                            <div class="track-description">submit project proposal</div>
-                        </div>
-                        
-                        <div class="track">
-                            <div class="track-title">step 2</div>
-                            <div class="track-description">go through review process</div>
-                        </div>
-                        
-                        <div class="track">
-                            <div class="track-title">step 3</div>
-                            <div class="track-description">get added to arc registry if selected</div>
-                        </div>
-
-                        <div class="track">
-                            <div class="track-description">
-                                if your project is not selected at step 3, you're welcome 
-                                to reapply with a new or refined proposal. if you are selected,
-                                proceed to step 4
-                            </div>
-                        </div>
-
-                        <div class="track">
-                            <div class="track-title">step 4</div>
-                            <div class="track-description">raise arc or sol to create LP pair</div>
-                            <div class="track-description">(from the community or yourself. we will jump in on special cases)</div>
-                        </div>
-
-                        <div class="button-container">
-                            <a href="https://app.formbricks.com/s/cm4t1si9f000011bybmvw769d?preview=true" 
-                               target="_blank" 
-                               rel="noopener noreferrer">
-                                <button class="take-pill-button">/arccellerate</button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            <div class="track">
+              <div class="track-title">step 2</div>
+              <div class="track-description">go through review process</div>
             </div>
-        </main>
-
-        <!-- Footer (same as index.html, icons now match nav) -->
-        <footer>
-            <div class="container">
-                <a href="https://x.com/arcdotfun" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                    <img src="assets/images/twitter_icon.png" alt="Twitter" class="icon" width="20" height="20">
-                </a>
-                <a href="https://t.me/+CI-vivonuApiZWQ0" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
-                    <img src="assets/images/telegram_icon.png" alt="Telegram" class="icon" width="20" height="20">
-                </a>
-                <a href="https://dexscreener.com/solana/j3b6dvhes2y1cbmtvz5tcwxnegsjjdbukxduvdpoqms7" target="_blank" rel="noopener noreferrer" aria-label="Dexscreener">
-                    <img src="assets/images/dexscreener.png" alt="Dexscreener" class="icon" width="20" height="20">
-                </a>
-                <a href="https://github.com/0xPlaygrounds/rig" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                    <img src="assets/images/github_logo.png" alt="GitHub" class="icon" width="20" height="20">
-                </a>
+            
+            <div class="track">
+              <div class="track-title">step 3</div>
+              <div class="track-description">get added to arc registry if selected</div>
             </div>
-        </footer>
-    </div>
 
-    <script>
-        // Copy wallet address
-        function copyWalletAddress() {
-            const address = document.getElementById("wallet-address").textContent.trim();
-            navigator.clipboard.writeText(address).then(() => {
-                alert("Wallet address copied to clipboard!");
-            }, () => {
-                alert("Failed to copy wallet address. Please copy manually.");
-            });
-        }
+            <div class="track">
+              <div class="track-description">
+                if your project is not selected at step 3, you're welcome 
+                to reapply with a new or refined proposal. if you are selected,
+                proceed to step 4
+              </div>
+            </div>
 
-        // Browser detection script
-        function detectBrowser() {
-            const html = document.documentElement;
-            
-            // Remove any existing browser classes
-            html.classList.remove('chrome', 'safari', 'firefox', 'edge');
-            
-            // More reliable Safari detection
-            const isSafari = !navigator.userAgent.includes('Chrome') 
-                           && !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
-            
-            if (isSafari) {
-                html.classList.add('safari');
-            }
-            // Detect Chrome
-            else if (navigator.userAgent.indexOf("Chrome") !== -1) {
-                html.classList.add('chrome');
-            }
-            // Detect Firefox
-            else if (navigator.userAgent.indexOf("Firefox") !== -1) {
-                html.classList.add('firefox');
-            }
-            // Detect Edge
-            else if (navigator.userAgent.indexOf("Edg") !== -1) {
-                html.classList.add('edge');
-            }
-        }
+            <div class="track">
+              <div class="track-title">step 4</div>
+              <div class="track-description">raise arc or sol to create LP pair</div>
+              <div class="track-description">(from the community or yourself. we will jump in on special cases)</div>
+            </div>
 
-        // Run detection immediately
-        detectBrowser();
+            <div class="button-container">
+              <a href="https://app.formbricks.com/s/cm4t1si9f000011bybmvw769d?preview=true" 
+                 target="_blank" 
+                 rel="noopener noreferrer">
+                <button class="take-pill-button">/arccellerate</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
 
-        // Also run on load to ensure it catches any dynamic changes
-        window.addEventListener('load', detectBrowser);
-    </script>
+    <!-- Footer (same as index.html, icons now match nav) -->
+    <footer>
+      <div class="container">
+        <a href="https://x.com/arcdotfun" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+          <img src="assets/images/twitter_icon.png" alt="Twitter" class="icon" width="20" height="20">
+        </a>
+        <a href="https://t.me/+CI-vivonuApiZWQ0" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+          <img src="assets/images/telegram_icon.png" alt="Telegram" class="icon" width="20" height="20">
+        </a>
+        <a href="https://dexscreener.com/solana/j3b6dvhes2y1cbmtvz5tcwxnegsjjdbukxduvdpoqms7" target="_blank" rel="noopener noreferrer" aria-label="Dexscreener">
+          <img src="assets/images/dexscreener.png" alt="Dexscreener" class="icon" width="20" height="20">
+        </a>
+        <a href="https://github.com/0xPlaygrounds/rig" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <img src="assets/images/github_logo.png" alt="GitHub" class="icon" width="20" height="20">
+        </a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Copy wallet address
+    function copyWalletAddress() {
+      const address = document.getElementById("wallet-address").textContent.trim();
+      navigator.clipboard.writeText(address).then(() => {
+        alert("Wallet address copied to clipboard!");
+      }, () => {
+        alert("Failed to copy wallet address. Please copy manually.");
+      });
+    }
+
+    // Browser detection script
+    function detectBrowser() {
+      const html = document.documentElement;
+      
+      // Remove any existing browser classes
+      html.classList.remove('chrome', 'safari', 'firefox', 'edge');
+      
+      // More reliable Safari detection
+      const isSafari = !navigator.userAgent.includes('Chrome') 
+                    && !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
+      
+      if (isSafari) {
+        html.classList.add('safari');
+      }
+      // Detect Chrome
+      else if (navigator.userAgent.indexOf("Chrome") !== -1) {
+        html.classList.add('chrome');
+      }
+      // Detect Firefox
+      else if (navigator.userAgent.indexOf("Firefox") !== -1) {
+        html.classList.add('firefox');
+      }
+      // Detect Edge
+      else if (navigator.userAgent.indexOf("Edg") !== -1) {
+        html.classList.add('edge');
+      }
+    }
+
+    // Run detection immediately
+    detectBrowser();
+
+    // Also run on load to ensure it catches any dynamic changes
+    window.addEventListener('load', detectBrowser);
+  </script>
 </body>
 </html>
